@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import { PrivateRoute } from "./utils/PrivateRoute";
 import Login from "./components/Login";
@@ -10,6 +10,10 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Link to="/">Login</Link>
+        <Link to="/" onClick={localStorage.removeItem("token")}>
+          Logout
+        </Link>
         <Switch>
           {/* <BubblesPage /> */}
           <Route exact path="/" component={Login} />
