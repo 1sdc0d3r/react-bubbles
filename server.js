@@ -92,6 +92,7 @@ let colors = [
 let nextId = 12;
 
 function authenticator(req, res, next) {
+  console.log("auth", req.headers);
   const { authorization } = req.headers;
   if (authorization === token) {
     next();
@@ -101,6 +102,7 @@ function authenticator(req, res, next) {
 }
 
 app.post("/api/login", (req, res) => {
+  console.log("login", req.body);
   const { username, password } = req.body;
   if (username === "Lambda School" && password === "i<3Lambd4") {
     req.loggedIn = true;
@@ -117,6 +119,7 @@ app.post("/api/login", (req, res) => {
 });
 
 app.get("/api/colors", authenticator, (req, res) => {
+  console.log("Get Colors");
   res.send(colors);
 });
 
